@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    </head>
+
+    <div class="center-on-page">
+        <h1>Weather:</h1>
+        <form class="form-inline" method="POST" action="{{ url_for('result') }}">
+            <div class="input-group">
+                <input type="text" name="user_input" class="form-control" placeholder="Enter City Name">
+            </div>
+            <button type="submit" class="btn">Go</button>
+        </form>
+    </div>
+
+</html>
