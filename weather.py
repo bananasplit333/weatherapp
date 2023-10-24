@@ -47,6 +47,7 @@ def get_weather(location):
     print(response)
     return response.json()
 
+#parse json and output the appropriate weather conditions 
 def query_api(city_name):
     messages = [
     {"role":"system", "content": "You will call a function for the user. You will pass a keyword to the function, and receive a json file containg information about the keyword. Please return the latitude and longitude of the location."},

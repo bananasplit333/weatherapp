@@ -17,6 +17,8 @@ def result():
     if request.method == 'POST':
         city_name = request.form.get('user_input')
         resp = query_api(city_name)
+        img_string = resp["weather"][0]["icon"]
+        print(img-img_string)
         pp(resp)
         if resp:
             data.append(resp)

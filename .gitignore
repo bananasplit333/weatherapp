@@ -1,0 +1,16 @@
+# .gitignore file 
+
+# Virtual Environment
+weatherenv/
+
+# .env file
+.env
+
+# Environment variables
+*.env
+
+# OpenAI API Key
+OPENAI_API_KEY
+
+# OpenWeather API Key
+OPENWEATHER_API_KEY
