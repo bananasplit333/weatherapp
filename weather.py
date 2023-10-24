@@ -70,4 +70,4 @@ def query_api(city_name):
                 ],
             temperature=0
         )
-        return output
+        return output, location_details
