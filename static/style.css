@@ -1,0 +1,47 @@
+/* Ensure the page takes up full viewport height */
+body, html {
+    height: 100%;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    color:whitesmoke;
+}
+
+/* Main container that will center everything */
+.page-center {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    padding-left: 20%;
+    padding-right: 20%;
+    justify-content: center;
+    background-color:black;
+    height: 100%;
+}
+
+/* Center the 'Weather' heading at the top */
+.weather-heading {
+    text-align: center;
+    font-size: 40px;
+    margin-top: 20px; /* add some space between heading and input+button */
+}
+
+/* Create a flex container for the input and button */
+.input-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px; /* space between input and button */
+}
+
+/* Style the input */
+input[type="text"] {
+    padding: 10px;
+    font-size: 16px;
+    width: 200px; /* adjust width as needed */
+    text-align: center; 
+}
+
+/* Style the button */
+button {
+    display: none;
+}
