@@ -8,5 +8,3 @@ pytz>=2021.1
 requests>=2.25.1
 Werkzeug>=1.0.1
 openai
-dotenv
-pprint
