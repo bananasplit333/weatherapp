@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<link rel="stylesheet" type = "text/css" href = "{{ url_for('static', filename = 'style.css') }}">
+<div class="page-center">
+    {% set my_string = "static/img/" + weather_icon + ".png" %}
+    <h1 class="weather-heading">Weather</h1>
+    <h1>
+        <img src="{{ my_string }}" class="png" fill="white" height="100" vertical-align="middle" width="100">
+    </h1>
+    
+    <h1 class="weather-heading">{{data[0]["choices"][0]["message"]["content"]}}</h1>
+</div>
