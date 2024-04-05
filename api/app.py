@@ -8,7 +8,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return render_template('templates/weather.html')
+    return render_template('./templates/weather.html')
 
 @app.route('/result', methods=['GET', 'POST'])
 def result():
