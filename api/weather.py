@@ -1,14 +1,14 @@
 import os 
-import openai
+from openai import OpenAI
+
 import json 
 import requests 
 from dotenv import load_dotenv
 
 #load API 
 load_dotenv()
-openai.api_key = os.getenv('OPENAI_API_KEY')
 openweather_key = os.getenv('OPENWEATHER_API_KEY')
-
+client = OpenAI(api_key=os.getenv('OPENAI_API_KEY'))
 
 
 #function calling. The function is called by the Chat Completion API, and the keyword is automatically detected and passed onto the get_coordinates method.
@@ -30,7 +30,7 @@ functions = [
             },
             "required": ["location"]
         },
-           
+
     }
 ]
 #get the coordinates of the location
@@ -53,21 +53,17 @@ def query_api(city_name):
     {"role":"system", "content": "You will call a function for the user. You will pass a keyword to the function, and receive a json file containg information about the keyword. Please return the latitude and longitude of the location."},
     {"role": "user", "content": f"What is the current weather in {city_name}?"}
     ]
-    response = openai.ChatCompletion.create(
-        model="gpt-3.5-turbo",
-        messages = messages,
-        functions = functions,
-        temperature=0
-    )
+    response = client.chat.completions.create(model="gpt-3.5-turbo",
+    messages = messages,
+    functions = functions,
+    temperature=0)
     if (response):
-        location_details = get_weather(response["choices"][0]["message"]["function_call"]["arguments"])
-        output = openai.ChatCompletion.create(
-            model="gpt-3.5-turbo",
-            messages=[
-                {"role": "system", 
-                 "content": "You will be given a dict of a location and its weather details. Please look over the data and share the current temperature in celsius for the given location. The weather details should be less than 20 words. Omit any measurements in Kelvin in your output. Recommend an outfit that would be appropriate for the weather"},
-                {"role": "user", "content": str(location_details)}
-                ],
-            temperature=0
-        )
+        location_details = get_weather(response.choices[0].message.function_call.arguments)
+        output = client.chat.completions.create(model="gpt-3.5-turbo",
+        messages=[
+            {"role": "system", 
+             "content": "You will be given a dict of a location and its weather details. Please look over the data and share the current temperature in celsius for the given location. The weather details should be less than 20 words. Omit any measurements in Kelvin in your output. Recommend an outfit that would be appropriate for the weather"},
+            {"role": "user", "content": str(location_details)}
+            ],
+        temperature=0)
         return output, location_details

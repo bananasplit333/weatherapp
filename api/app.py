@@ -2,15 +2,14 @@
 
 from pprint import pprint as pp
 from flask import Flask, flash, redirect, render_template, request, url_for
-from .weather import query_api
+from weather import query_api
 
 app = Flask(__name__)
 
 @app.route('/')
 def index():
     print('index')
-    return("hello world")
-    #return render_template('./api/templates/weather.html')
+    return render_template('weather.html')
 
 @app.route('/result', methods=['GET', 'POST'])
 def result():
