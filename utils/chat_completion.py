@@ -11,7 +11,7 @@ from dotenv import load_dotenv
 load_dotenv()
 client = OpenAI(api_key=os.getenv('OPENAI_API_KEY'))
 groq_client = Groq(api_key=os.getenv('GROQ_API_KEY'))
-GROQ_MODEL = "mixtral-8x7b-32768"
+GROQ_MODEL = "llama3-70b-8192"
 GPT_MODEL = "gpt-3.5-turbo"
 
 @retry(wait=wait_random_exponential(multiplier=1, max=40), stop=stop_after_attempt(3))
